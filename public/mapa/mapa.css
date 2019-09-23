@@ -1,3 +1,9 @@
 #mapid {
-  height: 570px;
+  height: 580px;
+}
+
+#p {
+  text-align: center;
+  font-style: italic;
+  font-size: 22px;
 }

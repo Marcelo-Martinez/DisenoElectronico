@@ -25,6 +25,15 @@ function getData() {
       map.setZoom(18);
       marker = L.marker([lati, long]).addTo(map);
       polyline = L.polyline(latLngs, { color: "red" }).addTo(map);
+      let p = document.getElementById("p");
+      p.innerHTML =
+        "Fecha: " +
+        data.date +
+        " " +
+        " -- Latitud: " +
+        data.lat / 100000 +
+        " Longitud: " +
+        data.long / 10000;
     });
 }
 getData();

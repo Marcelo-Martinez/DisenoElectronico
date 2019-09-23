@@ -13,8 +13,8 @@ const connection = mysql.createConnection({
 // sniffer
 exports.sniffer = function() {
   const PORT = 60060;
-  let HOST = "172.31.16.173";
-  // HOST = "localhost";
+  //let HOST = "172.31.16.173";
+  HOST = "localhost";
   let dgram = require("dgram");
   let server = dgram.createSocket("udp4");
   server.bind(PORT, HOST);
@@ -72,18 +72,18 @@ exports.webserver = function() {
         // TRANSFORM THE GPS TIME TO UTC TIME
         let dateUtc = gpstime.wnTowToUtcTimestamp(weeks, seconds);
         // CREATE A DATA OBJECT WITH THE ATTRIBUTES DATA, LAT AND LONG
-        let data = {
+        var data = {
           date:
             dateUtc.getUTCFullYear() +
             "-" +
-            dateUtc.getUTCMonth() +
+            (dateUtc.getUTCMonth() + 1) +
             "-" +
-            dateUtc.getUTCDate() +
-            ", Hora:" +
-            dateUtc.getUTCHours() +
+            (dateUtc.getUTCDate() + 2) +
+            ", Hora: " +
+            (dateUtc.getUTCHours() - 5) +
             ":" +
             dateUtc.getMinutes() +
-            " -- ",
+            " ",
           lat: lat,
           long: long
         };
