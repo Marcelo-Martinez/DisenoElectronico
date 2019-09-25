@@ -24,7 +24,7 @@ function getData() {
       });
       map.setZoom(18);
       marker = L.marker([lati, long]).addTo(map);
-      polyline = L.polyline(latLngs, { color: "orange" }).addTo(map);
+      polyline = L.polyline(latLngs, { color: "#ebab5e" }).addTo(map);
       let p = document.getElementById("p");
       p.innerHTML =
         " Last Date: " +
@@ -38,3 +38,5 @@ function getData() {
 }
 getData();
 let time = window.setInterval(getData, 10000);
+
+//var cosa = new Date($('.class_name').val()).getTime();

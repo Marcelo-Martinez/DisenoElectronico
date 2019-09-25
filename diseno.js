@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 });
 
 // sniffer
-exports.sniffer = function() {
+exports.sniffer = () => {
   const PORT = 60060;
   //let HOST = "172.31.16.173";
   let HOST = "localhost";
@@ -23,18 +23,7 @@ exports.sniffer = function() {
     console.log(remote.address + ":" + remote.port + " - " + message);
     //WHEN NEW MESSAGE ARRIVES, MAKE A POST OBJECT WITH THE MESSAGE IN IT
     // NEXT, INSERT THAT POST OBJECT INTO THE DATABASE
-    let post = {
-      message: message
-    };
-    // INSERT THE POST OBJETO INTO THE DATABASE
-    let query = connection.query(
-      "INSERT INTO information SET ?",
-      post,
-      function(error, results, fields) {
-        if (error) throw error;
-      }
-    );
-    console.log(query.sql);
+    exports.insert(exports.deco(message));
   });
   server.on("listening", function() {
     let address = server.address();
@@ -44,6 +33,45 @@ exports.sniffer = function() {
   });
 };
 
+exports.deco = message => {
+  // SPLIT THE MESSAGE FROM THE SYRUS AND TURN IT INTO A INT
+  let weeks = parseInt(databaseResponse.slice(6, 10));
+  let seconds = parseInt(databaseResponse.slice(11, 16));
+  let lat = parseInt(databaseResponse.slice(16, 24));
+  let long = parseInt(databaseResponse.slice(24, 32));
+  // TRANSFORM THE GPS TIME TO UTC TIME
+  let dateUtc = gpstime.wnTowToUtcTimestamp(weeks, seconds);
+
+  var data = {
+    date:
+      dateUtc.getUTCFullYear() +
+      "-" +
+      (dateUtc.getUTCMonth() + 1) +
+      "-" +
+      (dateUtc.getUTCDate() + 2) +
+      ", Hour: " +
+      (dateUtc.getUTCHours() - 5) +
+      ":" +
+      dateUtc.getMinutes() +
+      " ",
+    lat: lat,
+    long: long
+  };
+  return data;
+};
+
+exports.insert = message => {
+  // INSERT THE POST OBJETO INTO THE DATABASE
+  let query = connection.query(
+    `insert into designdatabase(latitude,longitude,time)  values (${message.lat},${message.long},${message.date});
+  `,
+    post,
+    function(error, results, fields) {
+      if (error) throw error;
+    }
+  );
+  console.log(query.sql);
+};
 // server
 exports.webserver = function() {
   let express = require("express");
