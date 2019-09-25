@@ -24,15 +24,15 @@ function getData() {
       });
       map.setZoom(18);
       marker = L.marker([lati, long]).addTo(map);
-      polyline = L.polyline(latLngs, { color: "red" }).addTo(map);
+      polyline = L.polyline(latLngs, { color: "orange" }).addTo(map);
       let p = document.getElementById("p");
       p.innerHTML =
-        "Fecha: " +
+        " Last Date: " +
         data.date +
         " " +
-        " -- Latitud: " +
+        " --  Latitude: " +
         data.lat / 100000 +
-        " Longitud: " +
+        "  Longitude: " +
         data.long / 10000;
     });
 }

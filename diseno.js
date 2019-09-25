@@ -79,7 +79,7 @@ exports.webserver = function() {
             (dateUtc.getUTCMonth() + 1) +
             "-" +
             (dateUtc.getUTCDate() + 2) +
-            ", Hora: " +
+            ", Hour: " +
             (dateUtc.getUTCHours() - 5) +
             ":" +
             dateUtc.getMinutes() +
