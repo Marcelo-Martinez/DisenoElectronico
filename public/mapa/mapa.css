@@ -4,9 +4,18 @@
 
 #img {
   position: relative;
-  bottom: 313px;
-  height: 300px;
+  bottom: 300px;
+  height: 285px;
   width: 300px;
   margin-left: 1px;
   margin-right: 60px;
+}
+
+#logo {
+  height: 60px;
+  width: 60px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

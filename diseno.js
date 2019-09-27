@@ -13,8 +13,8 @@ const dbCon = {
 // sniffer
 exports.sniffer = () => {
   const PORT = 60060;
-  let HOST = "172.31.16.173";
-  //let HOST = "localhost";
+  //let HOST = "172.31.16.173";
+  let HOST = "localhost";
   let dgram = require("dgram");
   let server = dgram.createSocket("udp4");
   server.bind(PORT, HOST);
@@ -78,7 +78,7 @@ exports.webserver = function() {
     res.sendFile(path.join(__dirname + "/public/mapa/index.html"));
   });
   app.get("/sendR", get);
-  app.listen(50000);
+  app.listen(50050);
 };
 
 get = (req, res) => {
