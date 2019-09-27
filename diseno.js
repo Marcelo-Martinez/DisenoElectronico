@@ -13,8 +13,8 @@ const dbCon = {
 // sniffer
 exports.sniffer = () => {
   const PORT = 60060;
-  //let HOST = "172.31.16.173";
-  let HOST = "localhost";
+  let HOST = "172.31.16.173";
+  //let HOST = "localhost";
   let dgram = require("dgram");
   let server = dgram.createSocket("udp4");
   server.bind(PORT, HOST);
@@ -24,7 +24,7 @@ exports.sniffer = () => {
     console.log(remote.address + ":" + remote.port + " - " + message);
     //WHEN NEW MESSAGE ARRIVES, MAKE A POST OBJECT WITH THE MESSAGE IN IT
     // NEXT, INSERT THAT POST OBJECT INTO THE DATABASE
-    //exports.insert(exports.deco(message));
+    insert(deco(message));
   });
   server.on("listening", function() {
     let address = server.address();
@@ -89,6 +89,7 @@ get = (req, res) => {
     "select latitude ,longitude,time FROM designdatabase WHERE id = (SELECT Max(id) FROM designdatabase);";
   connection.query(sql, function(err, result) {
     if (err) throw err;
+    console.log(result[0]);
     res.json(result[0]);
   });
   connection.end();

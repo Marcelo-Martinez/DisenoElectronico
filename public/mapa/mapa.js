@@ -34,7 +34,7 @@ function getData() {
         )
         .openPopup();
 
-      polyline = L.polyline(latLngs, { color: "blue" }).addTo(map);
+      polyline = L.polyline(latLngs, { color: "" }).addTo(map);
       let p = document.getElementById("p");
       p.innerHTML =
         " Last Date: " +
