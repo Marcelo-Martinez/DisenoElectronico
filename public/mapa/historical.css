@@ -1,0 +1,18 @@
+#mapid {
+  height: 568px;
+  margin-left: 300px;
+  background-color: #85c1e9;
+  text-align: right;
+}
+
+#selec_date_in {
+  position: absolute;
+  bottom: 350px;
+  margin-left: 15px;
+}
+
+#accept {
+  margin-left: 185px;
+  margin-top: 0px;
+  border: 0px;
+}

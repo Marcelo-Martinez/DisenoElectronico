@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- MAP -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
@@ -41,19 +44,33 @@
     ></script>
     <!-- STYLE THE PAGE -->
 
-    <link rel="stylesheet" type="text/css" media="screen" href="mapa.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="historical.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="mapa.css"
+    />
+
     <script async defer src="mapa.js"></script>
     <script async defer src="index.html"></script>
+    <script async defer src="map.html"></script>
 
     <!--<script async defer src="diseno.js"></script> -->
 
     <title>Where is my taxi?</title>
   </head>
 
-  <body>
+  <body style="background-color: #85C1E9">
     <nav
       class="navbar navbar-expand-lg  navbar navbar-light "
-      style="background-color: #FF8000;"
+      style="background-color:#85C1E9;"
     >
       <a class="navbar-brand" href="http://localhost:50000">ClearTaxi</a>
       <button
@@ -92,6 +109,28 @@
         </ul>
       </div>
     </nav>
-    <style></style>
+    <section>
+        <article>
+          <p id="mapid"></p>
+        </article>
+        </section>
+      
+    <aside id="selec_date_in" action="../../form-result.php" method="post" target="_blank">
+      <p>
+
+      </p>
+      <p> <h6 id="title">Seleccione la fecha de inicio</h6>
+         <input id="" type="datetime-local" name="fechaesperada"  > 
+        </p>
+      <p> <h6>Seleccione la fecha final</h6>
+         <input type="datetime-local" name="fechaesperada"> 
+        </p>
+        <input id="accept" type="button" value="Accept" class="btn btn-info
+        ">
+    </aside>
+    <aside>
+        <img id="img" src="images/taxi9.jpg" class="center" />
+    </aside>
+
   </body>
 </html>

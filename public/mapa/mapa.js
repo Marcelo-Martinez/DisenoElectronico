@@ -15,8 +15,9 @@ function getData() {
       if (polyline) {
         polyline.remove();
       }
-      lati = parseFloat(data.lat) / 100000;
-      long = parseFloat(data.long) / 10000;
+      console.log(data);
+      lati = parseFloat(data.latitude);
+      long = parseFloat(data.longitude);
       latLngs.push([lati, long]);
       map.setView({
         lat: lati,
@@ -24,19 +25,29 @@ function getData() {
       });
       map.setZoom(18);
       marker = L.marker([lati, long]).addTo(map);
-      polyline = L.polyline(latLngs, { color: "#ebab5e" }).addTo(map);
+      marker
+        .bindPopup(
+          "<b> Longitude: </b>" +
+            lati.toString() +
+            "<b> Latitude: </b>" +
+            long.toString()
+        )
+        .openPopup();
+
+      polyline = L.polyline(latLngs, { color: "blue" }).addTo(map);
       let p = document.getElementById("p");
       p.innerHTML =
         " Last Date: " +
-        data.date +
+        data.time +
         " " +
         " --  Latitude: " +
-        data.lat / 100000 +
+        data.latitude +
         "  Longitude: " +
-        data.long / 10000;
+        data.longitude;
+
+      console.log(data.time, data.latitude, data.longitude);
     });
 }
 getData();
 let time = window.setInterval(getData, 10000);
-
 //var cosa = new Date($('.class_name').val()).getTime();
