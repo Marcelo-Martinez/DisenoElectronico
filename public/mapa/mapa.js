@@ -34,16 +34,9 @@ function getData() {
         )
         .openPopup();
 
-      polyline = L.polyline(latLngs, { color: "" }).addTo(map);
+      polyline = L.polyline(latLngs, { color: "#A9CCE3" }).addTo(map);
       let p = document.getElementById("p");
-      p.innerHTML =
-        " Last Date: " +
-        data.time +
-        " " +
-        " --  Latitude: " +
-        data.latitude +
-        "  Longitude: " +
-        data.longitude;
+      p.innerHTML = " Last Date: " + new Date(data.time).toString();
 
       console.log(data.time, data.latitude, data.longitude);
     });

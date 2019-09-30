@@ -94,3 +94,16 @@ get = (req, res) => {
   });
   connection.end();
 };
+
+historical = (req, res) => {
+  const connection = mysql.createConnection(dbCon);
+  connection.connect();
+  const sql = `SELECT Latitude AS latitude, Longitude AS longitude, Time AS time FROM designdatabase 
+  WHERE time BETWEEN ${req.query.initTime} and ${req.query.finalTime} ORDER BY time;`;
+  connection.query(sql, function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.json(result);
+  });
+  connection.end();
+};
