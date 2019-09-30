@@ -43,4 +43,3 @@ function getData() {
 }
 getData();
 let time = window.setInterval(getData, 10000);
-//var cosa = new Date($('.class_name').val()).getTime();
