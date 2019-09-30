@@ -78,7 +78,7 @@ exports.webserver = function() {
     res.sendFile(path.join(__dirname + "/public/mapa/index.html"));
   });
   app.get("/sendR", get);
-  app.listen(50050);
+  app.listen(50000);
 };
 
 get = (req, res) => {
