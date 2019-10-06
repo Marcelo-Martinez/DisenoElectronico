@@ -48,7 +48,7 @@ $("#accept").click(function() {
       map2.setView(latlngs[latlngs.length - 1]);
       map2.setZoom(18);
     } else {
-      alert("No existen registros en el rango de fechas solicitado");
+      alert("No existen registros en el rango de fechas solicitado ");
     }
   });
 });
