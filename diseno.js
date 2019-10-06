@@ -13,7 +13,7 @@ const dbCon = {
 // sniffer
 exports.sniffer = () => {
   const PORT = 60060;
-  let HOST = "172.31.16.173";
+  let HOST = "172.31.35.142";
   //let HOST = "localhost";
   let dgram = require("dgram");
   let server = dgram.createSocket("udp4");
@@ -71,14 +71,18 @@ insert = message => {
 };
 // server
 exports.webserver = function() {
-  let express = require("express");
-  let app = express();
+  const express = require("express");
+  const bodyParser = require("body-parser");
+  const app = express();
   app.use(express.static(path.join(__dirname + "/public/mapa")));
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname + "/public/mapa/index.html"));
   });
   app.get("/sendR", get);
-  app.listen(50000);
+  app.post("/historical", historical);
+  app.listen(50050);
 };
 
 get = (req, res) => {
@@ -98,8 +102,7 @@ get = (req, res) => {
 historical = (req, res) => {
   const connection = mysql.createConnection(dbCon);
   connection.connect();
-  const sql = `SELECT Latitude AS latitude, Longitude AS longitude, Time AS time FROM designdatabase 
-  WHERE time BETWEEN ${req.query.initTime} and ${req.query.finalTime} ORDER BY time;`;
+  const sql = `SELECT Latitude AS latitude, Longitude AS longitude, Time AS time FROM designdatabase WHERE time BETWEEN ${req.body.initTime} and ${req.body.finalTime} ORDER BY time;`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log(result);

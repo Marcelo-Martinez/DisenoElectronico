@@ -1,4 +1,4 @@
-#mapid {
+#mapid2 {
   height: 568px;
   margin-left: 300px;
   background-color: #85c1e9;
@@ -7,20 +7,22 @@
 
 #selec_date_in {
   position: absolute;
-  bottom: 300px;
+  bottom: 350px;
   margin-left: 15px;
 }
 
 #accept {
-  margin-left: 185px;
+  position: absolute;
+
+  margin-left: 170px;
   margin-top: 0px;
+  bottom: -45px;
   border: 0px;
 }
 
 #img {
-  position: relative;
-  bottom: 0px;
-  top: 300px;
+  position: absolute;
+  top: 345px;
   height: 285px;
   width: 300px;
   margin-left: 1px;

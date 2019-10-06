@@ -4,11 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
-    <!-- MAP -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
@@ -36,7 +35,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
+
     <script
       src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
       integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
@@ -45,8 +44,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- STYLE THE PAGE -->
-
     <link
       rel="stylesheet"
       type="text/css"
@@ -54,18 +51,11 @@
       href="historical.css"
     />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="mapa.css"
-    />
+    <link rel="stylesheet" type="text/css" media="screen" href="mapa.css" />
 
-    
     <script async defer src="index.html"></script>
     <script async defer src="map.html"></script>
-
-    <!--<script async defer src="diseno.js"></script> -->
+    <script async defer src="historical.js"></script>
 
     <title>Where is my taxi?</title>
   </head>
@@ -75,7 +65,7 @@
       class="navbar navbar-expand-lg  navbar navbar-light "
       style="background-color:#85C1E9;"
     >
-      <a class="navbar-brand" href="http://23.22.188.41:50000">ClearTaxi</a>
+      <a class="navbar-brand" href="http://localhost:50050">ClearTaxi</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -90,7 +80,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="http://23.22.188.41:50000">Home</a>
+            <a class="nav-link" href="http://localhost:50050">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="map.html">Map</a>
@@ -112,29 +102,45 @@
         </ul>
       </div>
     </nav>
-    <section>
-        <article>
-          <p></p>
-          <p id="mapid2"></p>
-        </article>
-        </section>
-      
-    <aside id="selec_date_in" action="../../form-result.php" method="post" target="_blank">
-      <p>
-
-      </p>
-      <p> <h6 id="title">Seleccione la fecha de inicio</h6>
-         <input id="init-date" type="datetime-local" name="fechaesperada" value="2019-07-01T00:00" min="2019-07-01T00:00" max="2019-12-31T00:00" > 
-        </p>
-      <p> <h6>Seleccione la fecha final</h6>
-         <input id="final-date" type="datetime-local" name="fechaesperada" value="2019-07-01T00:00" min="2019-07-1T00:00" max="2019-12-31T00:00" > 
-        </p>
-        <input id="accept" type="button" value="Accept" class="btn btn-info
-        ">
+    <div id="mapid2"></div>
+    <aside
+      id="selec_date_in"
+      action="../../form-result.php"
+      method="post"
+      target="_blank"
+    >
+      <div>
+        <h6 id="title">Seleccione la fecha de inicio</h6>
+        <input
+          id="init-date"
+          type="datetime-local"
+          name="fechaesperada"
+          value="2019-07-01T00:00"
+          min="2019-07-01T00:00"
+          max="2019-12-31T00:00"
+        />
+      </div>
+      <div>
+        <h6>Seleccione la fecha final</h6>
+        <input
+          id="final-date"
+          type="datetime-local"
+          name="fechaesperada"
+          value="2019-07-01T00:00"
+          min="2019-07-1T00:00"
+          max="2019-12-31T00:00"
+        />
+      </div>
+      <input
+        id="accept"
+        type="button"
+        value="Accept"
+        class="btn btn-info
+        "
+      />
     </aside>
     <div>
       <img id="img" src="images/taxi9.jpg" />
-  </div>
-
+    </div>
   </body>
 </html>
