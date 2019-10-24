@@ -81,6 +81,7 @@ exports.webserver = function() {
     res.sendFile(path.join(__dirname + "/public/mapa/index.html"));
   });
   app.get("/sendR", get);
+  app.post("/getCarPos", getCarPos);
   app.post("/historical", historical);
   app.listen(50050);
 };
@@ -99,10 +100,26 @@ get = (req, res) => {
   connection.end();
 };
 
+getCarPos = (req, res) => {
+  const connection = mysql.createConnection(dbCon);
+  console.log(req.body);
+
+  connection.connect();
+  let carId = req.body.carId;
+  const sql = `select latitude ,longitude,time, speed, rpm FROM designdatabase WHERE car_id = '${carId}' order by id desc limit 1;`;
+  connection.query(sql, function(err, result) {
+    if (err) throw err;
+    console.log(result[0]);
+    res.json(result[0]);
+  });
+  connection.end();
+};
+
 historical = (req, res) => {
   const connection = mysql.createConnection(dbCon);
   connection.connect();
-  const sql = `SELECT Latitude AS latitude, Longitude AS longitude, Time AS time FROM designdatabase WHERE time BETWEEN ${req.body.initTime} and ${req.body.finalTime} ORDER BY time;`;
+  let carId = req.body.carId;
+  const sql = `SELECT Latitude AS latitude, Longitude AS longitude, Time AS time FROM designdatabase WHERE car_id = '${carId}'and time BETWEEN ${req.body.initTime} and ${req.body.finalTime} ORDER BY time;`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log(result);

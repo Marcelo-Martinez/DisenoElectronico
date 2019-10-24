@@ -11,12 +11,21 @@
   margin-left: 15px;
 }
 
-#accept {
+#button1 {
   position: absolute;
 
-  margin-left: 170px;
+  margin-left: 180px;
   margin-top: 0px;
-  bottom: -45px;
+  bottom: -50px;
+  border: 0px;
+}
+
+#button2 {
+  position: absolute;
+
+  margin-left: 100px;
+  margin-top: 0px;
+  bottom: -50px;
   border: 0px;
 }
 
