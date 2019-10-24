@@ -13,8 +13,8 @@ const dbCon = {
 // sniffer
 exports.sniffer = () => {
   const PORT = 60060;
-  let HOST = "172.31.35.142";
-  //let HOST = "localhost";
+  //let HOST = "172.31.35.142";
+  let HOST = "localhost";
   let dgram = require("dgram");
   let server = dgram.createSocket("udp4");
   server.bind(PORT, HOST);
@@ -37,14 +37,10 @@ exports.sniffer = () => {
 deco = message => {
   // SPLIT THE MESSAGE FROM THE SYRUS AND TURN IT INTO A INT
   let msg = message.toString();
-  let numWeeks = parseInt(msg.slice(6, 10));
-  let numDay = parseInt(msg[10]);
-  let dayTime = parseInt(msg.slice(11, 16)) - 5 * 3600;
-  let totalSeconds = numWeeks * 604800 + numDay * 86400 + dayTime;
-  let totalMilis = totalSeconds * 1000;
+  let totalMilis = parseInt(msg.slice(6, 18));
   var realdate = totalMilis + new Date(1980, 0, 6).getTime();
-  let lat = parseInt(message.slice(16, 24)) / 100000;
-  let long = parseInt(message.slice(24, 32)) / 10000;
+  let lat = parseInt(message.slice(19, 25)) / 100000;
+  let long = parseInt(message.slice(26, 32)) / 10000;
   // TRANSFORM THE GPS TIME TO UTC TIME
 
   var data = {
