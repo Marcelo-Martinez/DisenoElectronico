@@ -37,12 +37,12 @@ exports.sniffer = () => {
 deco = message => {
   // SPLIT THE MESSAGE FROM THE SYRUS AND TURN IT INTO A INT
 
-  let lat = parseInt(message.slice(0, 8)) / 100000;
-  let long = parseInt(message.slice(8, 15)) / 100000;
+  let lat = parseInt(message.slice(0, 7)) / 100000;
+  let long = parseInt(message.slice(7, 15)) / 100000;
   let realdateTotal = parseInt(message.slice(15, 25));
   let hour = parseInt(message.slice(25, 30));
   let speed = parseInt(message.slice(30, 33));
-  let carId = parseInt(message.slice(33, 36));
+  let carId = parseInt(message.slice(33, 34));
   // TRANSFORM THE GPS TIME TO UTC TIME
 
   var data = {
