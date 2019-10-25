@@ -13,8 +13,8 @@ const dbCon = {
 // sniffer
 exports.sniffer = () => {
   const PORT = 60060;
-  //let HOST = "172.31.35.142";
-  let HOST = "localhost";
+  let HOST = "172.31.35.142";
+  //let HOST = "localhost";
   let dgram = require("dgram");
   let server = dgram.createSocket("udp4");
   server.bind(PORT, HOST);
@@ -37,18 +37,22 @@ exports.sniffer = () => {
 deco = message => {
   // SPLIT THE MESSAGE FROM THE SYRUS AND TURN IT INTO A INT
 
-  let lat = parseInt(message.slice(0, 7)) / 100000;
-  let long = parseInt(message.slice(7, 14)) / 10000;
-  let realdata = parseInt(message.slice(14, 22));
-  let realhour = parseInt(message.slice(22, 26));
-  let realdateTotal = parseInt(message.slice(14, 26));
+  let lat = parseInt(message.slice(0, 8)) / 100000;
+  let long = parseInt(message.slice(8, 15)) / 100000;
+  let realdata = parseInt(message.slice(15, 23));
+  let realhour = parseInt(message.slice(23, 27));
+  let realdateTotal = parseInt(message.slice(15, 27));
+  let speed = parseInt(message.slice(15, 27));
+  let rpm = parseInt(message.slice(15, 27));
 
   // TRANSFORM THE GPS TIME TO UTC TIME
 
   var data = {
     date: realdateTotal,
     lat: lat,
-    long: long
+    long: long,
+    speed: speed,
+    rpm: rpm
   };
   return data;
 };
@@ -58,7 +62,7 @@ insert = message => {
   console.log(message);
   // INSERT THE POST OBJETO INTO THE DATABASE
   let query = connection.query(
-    `insert into designdatabase(latitude,longitude,time)  values (${message.lat},${message.long},${message.date});
+    `insert into designdatabase(latitude,longitude,time,speed,rpm)  values (${message.lat},${message.long},${message.date}, ${message.speed}, ${message.rpm});
   `,
     function(error, results, fields) {
       if (error) throw error;
