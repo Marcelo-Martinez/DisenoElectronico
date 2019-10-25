@@ -36,15 +36,17 @@ exports.sniffer = () => {
 
 deco = message => {
   // SPLIT THE MESSAGE FROM THE SYRUS AND TURN IT INTO A INT
-  let msg = message.toString();
-  let totalMilis = parseInt(msg.slice(6, 18));
-  var realdate = totalMilis + new Date(1980, 0, 6).getTime();
-  let lat = parseInt(message.slice(19, 25)) / 100000;
-  let long = parseInt(message.slice(26, 32)) / 10000;
+
+  let lat = parseInt(message.slice(0, 7)) / 100000;
+  let long = parseInt(message.slice(7, 14)) / 10000;
+  let realdata = parseInt(message.slice(14, 22));
+  let realhour = parseInt(message.slice(22, 26));
+  let realdateTotal = parseInt(message.slice(14, 26));
+
   // TRANSFORM THE GPS TIME TO UTC TIME
 
   var data = {
-    date: realdate,
+    date: realdateTotal,
     lat: lat,
     long: long
   };
