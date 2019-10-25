@@ -53,6 +53,8 @@ deco = message => {
     carId: carId,
     hour: hour
   };
+  console.log(data);
+
   return data;
 };
 
@@ -61,7 +63,7 @@ insert = message => {
   console.log(message);
   // INSERT THE POST OBJETO INTO THE DATABASE
   let query = connection.query(
-    `insert into designdatabase(latitude,longitude,time, hour, speed,car_id)  values (${message.lat},${message.long},${message.date}, ${message.hour} ${message.speed}, ${message.carId});
+    `insert into designdatabase(latitude,longitude,time,hour,speed,car_id)  values (${message.lat},${message.long},${message.date}, ${message.hour} ${message.speed}, ${message.carId});
   `,
     function(error, results, fields) {
       if (error) throw error;
@@ -92,7 +94,7 @@ get = (req, res) => {
 
   connection.connect();
   const sql =
-    "select latitude ,longitude,time FROM designdatabase WHERE id = (SELECT Max(id) FROM designdatabase);";
+    "select latitude ,longitude,time,hour,speed FROM designdatabase WHERE id = (SELECT Max(id) FROM designdatabase);";
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log(result[0]);
@@ -107,7 +109,7 @@ getCarPos = (req, res) => {
 
   connection.connect();
   let carId = req.body.carId;
-  const sql = `select latitude ,longitude,time, hour, speed, hour FROM designdatabase WHERE car_id = '${carId}' order by id desc limit 1;`;
+  const sql = `select latitude ,longitude,time,hour,speed, hour FROM designdatabase WHERE car_id = '${carId}' order by id desc limit 1;`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log(result[0]);
