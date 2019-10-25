@@ -32,6 +32,8 @@ function getData() {
       return res.json();
     })
     .then(data => {
+      console.log(data);
+
       if (car1) {
         if (marker) {
           marker.remove();
@@ -59,14 +61,16 @@ function getData() {
               "<b> Speed: </b>" +
               " " +
               data.speed.toString() +
-              "<b> RPM: </b>" +
-              data.rpm.toString()
+              "<b> Date: </b>" +
+              data.time.toString() +
+              "<b> Hour: </b>" +
+              data.hour.toString()
           )
           .openPopup();
 
         polyline = L.polyline(latLngs, { color: "#A9CCE3" }).addTo(map);
         let p = document.getElementById("p");
-        p.innerHTML = " Last Date: " + new Date(data.time).toString();
+        // p.innerHTML = " Last Date: " + data.realdata.toString();
 
         console.log(data.time, data.latitude, data.longitude);
       } else {
@@ -102,6 +106,7 @@ function getData() {
             console.log(data);
             lati2 = parseFloat(data.latitude);
             long2 = parseFloat(data.longitude);
+            Totaldate = parseFloat(data.time);
             latLngs2.push([lati2, long2]);
             map.setView({
               lat: lati2,
@@ -116,17 +121,18 @@ function getData() {
                   "<b> Latitude: </b>" +
                   long2.toString() +
                   "<br/>" +
-                  " " +
                   "<b> Speed: </b>" +
                   data.speed.toString() +
-                  "<b> RPM: </b>" +
-                  data.rpm.toString()
+                  "<b> Date: </b>" +
+                  Totaldate.toString() +
+                  "<b> Hour: </b>" +
+                  data.hour.toString()
               )
               .openPopup();
 
             polyline2 = L.polyline(latLngs2, { color: "#A9CCE3" }).addTo(map);
             let p = document.getElementById("p");
-            p.innerHTML = " Last Date: " + new Date(data.time).toString();
+            //p.innerHTML = " Last Date: " + data.realdata.toString();
 
             console.log(data.time, data.latitude, data.longitude);
           } else {
