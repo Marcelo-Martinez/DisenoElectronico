@@ -19,7 +19,7 @@ $("#button2").click(function() {
 
 function getData() {
   let car = {
-    carId: "mar_car"
+    carId: 1
   };
   fetch("getCarPos", {
     method: "POST",
@@ -79,7 +79,7 @@ function getData() {
       }
       // /////////////////////////////////
       car = {
-        carId: "nico_car"
+        carId: 2
       };
       fetch("getCarPos", {
         method: "POST",

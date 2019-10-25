@@ -19,7 +19,7 @@ $("#Car1").click(function() {
   const timeMargin = {
     initTime: new Date($("#init-date").val()).getTime(),
     finalTime: new Date($("#final-date").val()).getTime(),
-    carId: "mar_car"
+    carId: "1"
   };
   $.post("/historical", timeMargin).done(function(data) {
     console.log(data);
@@ -66,7 +66,7 @@ $("#Car2").click(function() {
   const timeMargin = {
     initTime: new Date($("#init-date").val()).getTime(),
     finalTime: new Date($("#final-date").val()).getTime(),
-    carId: "nico_car"
+    carId: "2"
   };
   $.post("/historical", timeMargin).done(function(data) {
     marker2.setLatLng([51.505, -0.09]);

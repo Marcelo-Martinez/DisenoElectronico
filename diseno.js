@@ -42,9 +42,9 @@ deco = message => {
   let realdata = parseInt(message.slice(15, 23));
   let realhour = parseInt(message.slice(23, 27));
   let realdateTotal = parseInt(message.slice(15, 27));
-  let speed = parseInt(message.slice(15, 27));
-  let rpm = parseInt(message.slice(15, 27));
-
+  let speed = parseInt(message.slice(27, 30));
+  let rpm = parseInt(message.slice(30, 34));
+  let carId = parseInt(message.slice(34, 42));
   // TRANSFORM THE GPS TIME TO UTC TIME
 
   var data = {
@@ -52,7 +52,8 @@ deco = message => {
     lat: lat,
     long: long,
     speed: speed,
-    rpm: rpm
+    rpm: rpm,
+    carId: carId
   };
   return data;
 };
@@ -62,7 +63,7 @@ insert = message => {
   console.log(message);
   // INSERT THE POST OBJETO INTO THE DATABASE
   let query = connection.query(
-    `insert into designdatabase(latitude,longitude,time,speed,rpm)  values (${message.lat},${message.long},${message.date}, ${message.speed}, ${message.rpm});
+    `insert into designdatabase(latitude,longitude,time,speed,rpm,car_id)  values (${message.lat},${message.long},${message.date}, ${message.speed}, ${message.rpm}, ${message.carId});
   `,
     function(error, results, fields) {
       if (error) throw error;
