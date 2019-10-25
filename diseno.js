@@ -63,7 +63,7 @@ insert = message => {
   console.log(message);
   // INSERT THE POST OBJETO INTO THE DATABASE
   let query = connection.query(
-    `insert into designdatabase(latitude,longitude,time,hour,speed,car_id)  values (${message.lat},${message.long},${message.date}, ${message.hour} ${message.speed}, ${message.carId});
+    `insert into designdatabase(latitude,longitude,time,hour,speed,car_id)  values (${message.lat},${message.long},${message.date}, ${message.hour}, ${message.speed}, ${message.carId});
   `,
     function(error, results, fields) {
       if (error) throw error;
