@@ -117,14 +117,15 @@ function getData() {
             marker2
               .bindPopup(
                 "<b> Longitude: </b>" +
-                  lati2.toString() +
+                  lati.toString() +
                   "<b> Latitude: </b>" +
-                  long2.toString() +
+                  long.toString() +
                   "<br/>" +
                   "<b> Speed: </b>" +
+                  " " +
                   data.speed.toString() +
                   "<b> Date: </b>" +
-                  Totaldate.toString() +
+                  data.time.toString() +
                   "<b> Hour: </b>" +
                   data.hour.toString()
               )
