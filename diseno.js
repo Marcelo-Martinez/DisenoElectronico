@@ -66,10 +66,9 @@ insert = message => {
   let query = connection.query(
     `insert into designdatabase(latitude,longitude,time,hour,speed,car_id)  values (${
       message.lat
-    },${
-      message.long
-    },${message.date.toString()}, ${message.hour.toString()}, ${message.speed.toString()}, ${message.carId.toString()});
-  `,
+    },${message.long},${message.date.toString()}, ${message.hour.toString()}, ${
+      message.speed
+    }, ${message.carId});`,
     function(error, results, fields) {
       if (error) throw error;
     }
