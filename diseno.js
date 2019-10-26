@@ -12,7 +12,7 @@ const dbCon = {
 
 // sniffer
 exports.sniffer = () => {
-  const PORT = 60060;
+  const PORT = process.event.PORT || 60060;
   //let HOST = "172.31.35.142";
   let HOST = "localhost";
   let dgram = require("dgram");
