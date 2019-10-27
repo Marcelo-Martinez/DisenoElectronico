@@ -64,6 +64,7 @@ function getData() {
               data.speed.toString() +
               "<b> Date: </b>" +
               d.toDateString(data.time) +
+              " " +
               d.toTimeString(data.time)
           )
           .openPopup();
