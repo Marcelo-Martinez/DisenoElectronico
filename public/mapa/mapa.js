@@ -62,9 +62,7 @@ function getData() {
               " " +
               data.speed.toString() +
               "<b> Date: </b>" +
-              data.time.toString() +
-              "<b> Hour: </b>" +
-              data.hour.toString()
+              data.time.toString()
           )
           .openPopup();
 
@@ -124,9 +122,7 @@ function getData() {
                   " " +
                   data.speed.toString() +
                   "<b> Date: </b>" +
-                  data.time.toString() +
-                  "<b> Hour: </b>" +
-                  data.hour.toString()
+                  data.time.toString()
               )
               .openPopup();
 
