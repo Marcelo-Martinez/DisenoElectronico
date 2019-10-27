@@ -21,6 +21,7 @@ $("#Car1").click(function() {
     finalTime: new Date($("#final-date").val()).getTime(),
     carId: "1"
   };
+
   $.post("/historical", timeMargin).done(function(data) {
     console.log(data);
 

@@ -12,7 +12,7 @@ const dbCon = {
 
 // sniffer
 exports.sniffer = () => {
-  const PORT = process.event.PORT || 60060;
+  const PORT = 60060;
   //let HOST = "172.31.35.142";
   let HOST = "localhost";
   let dgram = require("dgram");
@@ -39,19 +39,17 @@ deco = message => {
 
   let lat = parseInt(message.slice(0, 7)) / 100000;
   let long = parseInt(message.slice(7, 15)) / 100000;
-  let realdateTotal = message.slice(15, 25);
-  let hour = message.slice(25, 30);
-  let speed = parseInt(message.slice(30, 33));
-  let carId = parseInt(message.slice(33, 34));
+  let date = parseInt(message.slice(15, 34));
+  let speed = parseInt(message.slice(34, 37));
+  let carId = parseInt(message.slice(37, 41));
   // TRANSFORM THE GPS TIME TO UTC TIME
 
   var data = {
-    date: realdateTotal,
     lat: lat,
     long: long,
+    date: date,
     speed: speed,
-    carId: carId,
-    hour: hour
+    carId: carId
   };
   console.log(data);
 
@@ -64,7 +62,7 @@ insert = message => {
   // INSERT THE POST OBJETO INTO THE DATABASE
 
   let query = connection.query(
-    `insert into designdatabase(latitude,longitude,time,hour,speed,car_id)  values (${message.lat},${message.long}, '${message.date}', '${message.hour}', ${message.speed}, ${message.carId});`,
+    `insert into designdatabase(latitude,longitude,time,speed,car_id)  values (${message.lat},${message.long}, '${message.date}', ${message.speed}, ${message.carId});`,
     function(error, results, fields) {
       if (error) throw error;
     }
@@ -94,7 +92,7 @@ get = (req, res) => {
 
   connection.connect();
   const sql =
-    "select latitude ,longitude,time,hour,speed FROM designdatabase WHERE id = (SELECT Max(id) FROM designdatabase);";
+    "select latitude ,longitude,time,speed FROM designdatabase WHERE id = (SELECT Max(id) FROM designdatabase);";
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log(result[0]);
@@ -109,7 +107,7 @@ getCarPos = (req, res) => {
 
   connection.connect();
   let carId = req.body.carId;
-  const sql = `select latitude ,longitude,time,hour,speed, hour FROM designdatabase WHERE car_id = '${carId}' order by id desc limit 1;`;
+  const sql = `select latitude ,longitude,time,speed, hour FROM designdatabase WHERE car_id = '${carId}' order by id desc limit 1;`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log(result[0]);

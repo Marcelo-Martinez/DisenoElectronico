@@ -106,7 +106,6 @@ function getData() {
             console.log(data);
             lati2 = parseFloat(data.latitude);
             long2 = parseFloat(data.longitude);
-            Totaldate = parseFloat(data.time);
             latLngs2.push([lati2, long2]);
             map.setView({
               lat: lati2,
