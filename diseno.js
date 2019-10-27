@@ -39,9 +39,9 @@ deco = message => {
 
   let lat = parseInt(message.slice(0, 7)) / 100000;
   let long = parseInt(message.slice(7, 15)) / 100000;
-  let date = parseInt(message.slice(15, 25));
-  let speed = parseInt(message.slice(25, 28));
-  let carId = parseInt(message.slice(28, 31));
+  let date = parseInt(message.slice(15, 28));
+  let speed = parseInt(message.slice(28, 31));
+  let carId = parseInt(message.slice(31, 34));
   // TRANSFORM THE GPS TIME TO UTC TIME
 
   var data = {
