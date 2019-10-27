@@ -39,9 +39,9 @@ deco = message => {
 
   let lat = parseInt(message.slice(0, 7)) / 100000;
   let long = parseInt(message.slice(7, 15)) / 100000;
-  let date = parseInt(message.slice(15, 34));
-  let speed = parseInt(message.slice(34, 37));
-  let carId = parseInt(message.slice(37, 41));
+  let date = parseInt(message.slice(15, 25));
+  let speed = parseInt(message.slice(25, 28));
+  let carId = parseInt(message.slice(28, 31));
   // TRANSFORM THE GPS TIME TO UTC TIME
 
   var data = {
@@ -62,7 +62,7 @@ insert = message => {
   // INSERT THE POST OBJETO INTO THE DATABASE
 
   let query = connection.query(
-    `insert into designdatabase(latitude,longitude,time,speed,car_id)  values (${message.lat},${message.long},'${message.date}',${message.speed}, ${message.carId});`,
+    `insert into designdatabase(latitude,longitude,time,speed,car_id)  values (${message.lat},${message.long},${message.date},${message.speed}, ${message.carId});`,
     function(error, results, fields) {
       if (error) throw error;
     }
@@ -107,7 +107,7 @@ getCarPos = (req, res) => {
 
   connection.connect();
   let carId = req.body.carId;
-  const sql = `select latitude ,longitude,time,speed, hour FROM designdatabase WHERE car_id = '${carId}' order by id desc limit 1;`;
+  const sql = `select latitude ,longitude,time,speed FROM designdatabase WHERE car_id = '${carId}' order by id desc limit 1;`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log(result[0]);

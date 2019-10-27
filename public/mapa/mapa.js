@@ -44,6 +44,7 @@ function getData() {
         console.log(data);
         lati = parseFloat(data.latitude);
         long = parseFloat(data.longitude);
+        let d = new Date();
         latLngs.push([lati, long]);
         map.setView({
           lat: lati,
@@ -62,7 +63,8 @@ function getData() {
               " " +
               data.speed.toString() +
               "<b> Date: </b>" +
-              data.time.toString()
+              d.toDateString(data.time) +
+              d.toTimeString(data.time)
           )
           .openPopup();
 
@@ -104,6 +106,7 @@ function getData() {
             console.log(data);
             lati2 = parseFloat(data.latitude);
             long2 = parseFloat(data.longitude);
+            let da = new Date();
             latLngs2.push([lati2, long2]);
             map.setView({
               lat: lati2,
@@ -122,7 +125,9 @@ function getData() {
                   " " +
                   data.speed.toString() +
                   "<b> Date: </b>" +
-                  data.time.toString()
+                  da.toDateString(data.time) +
+                  " " +
+                  da.toTimeString(data.time)
               )
               .openPopup();
 
